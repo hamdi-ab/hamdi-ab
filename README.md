@@ -4,7 +4,7 @@
 
 ---
 
-<!--BUILDING-->**Currently Building:** *PathCraft* — an AI-powered learning roadmap app with Gemini, Flutter, and offline-first architecture.
+<!--BUILDING-->**Currently Building:** *pathcraft-release*
 
 ---
 
