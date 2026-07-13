@@ -1,0 +1,68 @@
+name: Update Profile
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Find latest active repo
+        id: latest
+        run: |
+          LATEST_REPO=$(gh api users/hamdi-ab/repos \
+            --jq '[.[] | select(.name != "hamdi-ab") | select(.pushed_at != null)] | sort_by(.pushed_at) | reverse | .[0]')
+          REPO_NAME=$(echo "$LATEST_REPO" | jq -r '.name')
+          REPO_DESC=$(echo "$LATEST_REPO" | jq -r '.description // ""')
+          echo "repo_name=$REPO_NAME" >> "$GITHUB_OUTPUT"
+          echo "repo_desc=$REPO_DESC" >> "$GITHUB_OUTPUT"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update README
+        env:
+          REPO: ${{ steps.latest.outputs.repo_name }}
+          DESC: ${{ steps.latest.outputs.repo_desc }}
+        run: |
+          if [ -z "$REPO" ]; then
+            echo "No active repo found, skipping"
+            exit 0
+          fi
+
+          python3 << 'PYEOF'
+import os, re
+
+repo = os.environ.get("REPO", "")
+desc = os.environ.get("DESC", "")
+text = f" — {desc}" if desc else ""
+line = f"🚧 **Currently Building:** *{repo}{text}*"
+
+with open("README.md") as f:
+    content = f.read()
+
+content = re.sub(
+    r"🚧 \*\*Currently Building:\*\*.*",
+    line,
+    content
+)
+
+with open("README.md", "w") as f:
+    f.write(content)
+PYEOF
+
+          if ! git diff --quiet README.md; then
+            git config user.name "hamdi-ab"
+            git config user.email "hamdiabdulfetah22@gmail.com"
+            git add README.md
+            git commit -m "chore(profile): update currently building to $REPO"
+            git push
+          else
+            echo "No change needed"
+          fi
