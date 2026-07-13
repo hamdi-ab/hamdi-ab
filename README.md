@@ -4,17 +4,17 @@
 
 ---
 
-<!--BUILDING-->🚧 **Currently Building:** *PathCraft* — an AI-powered learning roadmap app with Gemini, Flutter, and offline-first architecture.
+<!--BUILDING-->**Currently Building:** *PathCraft* — an AI-powered learning roadmap app with Gemini, Flutter, and offline-first architecture.
 
 ---
 
-### 👋 About Me
+### About Me
 
 I'm a developer who ships. I launched **PathCraft** (Flutter + Gemini AI) to help people learn any skill with structured roadmaps, built an **Anki flashcard skill** that turns medical textbooks into study cards, and I'm always working on the next thing. Flutter, Next.js, Node.js — those are my tools. Shipping is my habit.
 
 ---
 
-### 🛠️ Tech Stack
+### Tech Stack
 
 ![Flutter](https://img.shields.io/badge/Flutter-02569B?style=flat-square&logo=flutter&logoColor=white)
 ![Dart](https://img.shields.io/badge/Dart-0175C2?style=flat-square&logo=dart&logoColor=white)
@@ -26,18 +26,19 @@ I'm a developer who ships. I launched **PathCraft** (Flutter + Gemini AI) to hel
 
 ---
 
-### 📊 GitHub Stats
+### GitHub Stats
 
 <div align="center">
-  <img height="160em" src="https://github-readme-stats.vercel.app/api?username=hamdi-ab&show_icons=true&theme=transparent&title_color=14B8A6&text_color=e2e8f0&icon_color=14B8A6&border_color=14B8A6&hide_border=true&count_private=true" />
-  <img height="160em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=hamdi-ab&layout=compact&theme=transparent&title_color=14B8A6&text_color=e2e8f0&border_color=14B8A6&hide_border=true&count_private=true" />
+  <img height="160em" src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=hamdi-ab&theme=github_dark" alt="Profile Details" />
+  <img height="160em" src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=hamdi-ab&theme=github_dark" alt="Top Languages" />
+  <img height="160em" src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=hamdi-ab&theme=github_dark" alt="Most Commit Language" />
   <br/>
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=hamdi-ab&theme=transparent&ring=14B8A6&fire=14B8A6&currStreakLabel=14B8A6&hide_border=true" alt="GitHub Streak" />
 </div>
 
 ---
 
-### 🐍 Contribution Snake
+### Contribution Snake
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/hamdi-ab/hamdi-ab/output/github-contribution-grid-snake-dark.svg" />
@@ -47,27 +48,27 @@ I'm a developer who ships. I launched **PathCraft** (Flutter + Gemini AI) to hel
 
 ---
 
-### 📌 Featured Projects
+### Featured Projects
 
 <table>
   <tr>
     <td width="50%">
-      <h3 align="center">🗺️ PathCraft</h3>
+      <h3 align="center">PathCraft</h3>
       <p align="center">
         <a href="https://github.com/hamdi-ab/pathcraft-release">[repo]</a>
-        &nbsp;•&nbsp;
-        <strong>Flutter • Gemini AI • Offline-first</strong>
+        &nbsp;:zap:&nbsp;
+        <strong>Flutter :zap: Gemini AI :zap: Offline-first</strong>
       </p>
       <p align="center">
         AI-powered learning roadmaps that break down any skill into a daily checklist with a built-in study timer. Beautiful glassmorphism UI, dark mode, calendar view, and full offline support.
       </p>
     </td>
     <td width="50%">
-      <h3 align="center">🧠 Anki Flashcard Skill</h3>
+      <h3 align="center">Anki Flashcard Skill</h3>
       <p align="center">
         <a href="https://github.com/hamdi-ab/anki-flashcard-skill">[repo]</a>
-        &nbsp;•&nbsp;
-        <strong>Python • PDF • Agent Skill</strong>
+        &nbsp;:zap:&nbsp;
+        <strong>Python :zap: PDF :zap: Agent Skill</strong>
       </p>
       <p align="center">
         A published agent skill that dissects textbook PDFs into Anki-ready flashcards — cloze deletion and basic card types. Used by medical students to study from dense textbooks.
@@ -79,7 +80,7 @@ I'm a developer who ships. I launched **PathCraft** (Flutter + Gemini AI) to hel
 ---
 
 <div align="center">
-  <sub>⚡ <em>"The only way to learn is to ship."</em> — you're looking at someone who lives by that.</sub>
+  <sub><em>"The only way to learn is to ship."</em> — you're looking at someone who lives by that.</sub>
   <br/>
   <br/>
   <img src="https://komarev.com/ghpvc/?username=hamdi-ab&color=14B8A6&style=flat-square&label=Profile+Views" alt="Profile views" />
