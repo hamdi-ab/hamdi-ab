@@ -17,55 +17,34 @@ jobs:
       - name: Find latest active repo
         id: latest
         run: |
-          LATEST_REPO=$(gh api users/hamdi-ab/repos \
-            --jq '[.[] | select(.name != "hamdi-ab") | select(.pushed_at != null)] | sort_by(.pushed_at) | reverse | .[0]')
-          REPO_NAME=$(echo "$LATEST_REPO" | jq -r '.name')
-          REPO_DESC=$(echo "$LATEST_REPO" | jq -r '.description // ""')
-          echo "repo_name=$REPO_NAME" >> "$GITHUB_OUTPUT"
-          echo "repo_desc=$REPO_DESC" >> "$GITHUB_OUTPUT"
+          LATEST=$(gh api users/hamdi-ab/repos --jq '[.[] | select(.name != "hamdi-ab") | select(.pushed_at != null)] | sort_by(.pushed_at) | reverse | .[0]')
+          echo "name=$(echo "$LATEST" | jq -r '.name')" >> "$GITHUB_OUTPUT"
+          echo "desc=$(echo "$LATEST" | jq -r '.description // ""')" >> "$GITHUB_OUTPUT"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Update README
         env:
-          REPO: ${{ steps.latest.outputs.repo_name }}
-          DESC: ${{ steps.latest.outputs.repo_desc }}
+          REPO: ${{ steps.latest.outputs.name }}
+          DESC: ${{ steps.latest.outputs.desc }}
         run: |
           if [ -z "$REPO" ]; then
             echo "No active repo found, skipping"
             exit 0
           fi
 
-          python3 << 'PYEOF'
-import os, re
+          LINE="**Currently Building:** *${REPO}*"
+          if [ -n "$DESC" ]; then
+            LINE="${LINE} $(printf '\u2014') ${DESC}"
+          fi
 
-repo = os.environ.get("REPO", "")
-desc = os.environ.get("DESC", "")
-tail = f" \\u2014 {desc}" if desc else ""
-
-with open("README.md", encoding="utf-8") as f:
-    content = f.read()
-
-def replace_building(m):
-    prefix = m.group(1)
-    return prefix + repo + tail
-
-content = re.sub(
-    r"(<!--BUILDING-->.*?\*\*Currently Building:\*\* \*).*?\*",
-    replace_building,
-    content,
-    flags=re.DOTALL
-)
-
-with open("README.md", "w", encoding="utf-8") as f:
-    f.write(content)
-PYEOF
+          sed -i "s|<!--BUILDING-->.*|<!--BUILDING-->${LINE}|" README.md
 
           if ! git diff --quiet README.md; then
             git config user.name "hamdi-ab"
             git config user.email "hamdiabdulfetah22@gmail.com"
             git add README.md
-            git commit -m "chore(profile): update currently building to $REPO"
+            git commit -m "chore(profile): update currently building to ${REPO}"
             git push
           else
             echo "No change needed"
