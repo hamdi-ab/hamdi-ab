@@ -41,19 +41,23 @@ import os, re
 
 repo = os.environ.get("REPO", "")
 desc = os.environ.get("DESC", "")
-text = f" — {desc}" if desc else ""
-line = f"🚧 **Currently Building:** *{repo}{text}*"
+tail = f" \\u2014 {desc}" if desc else ""
 
-with open("README.md") as f:
+with open("README.md", encoding="utf-8") as f:
     content = f.read()
 
+def replace_building(m):
+    prefix = m.group(1)
+    return prefix + repo + tail
+
 content = re.sub(
-    r"🚧 \*\*Currently Building:\*\*.*",
-    line,
-    content
+    r"(<!--BUILDING-->.*?\*\*Currently Building:\*\* \*).*?\*",
+    replace_building,
+    content,
+    flags=re.DOTALL
 )
 
-with open("README.md", "w") as f:
+with open("README.md", "w", encoding="utf-8") as f:
     f.write(content)
 PYEOF
 
