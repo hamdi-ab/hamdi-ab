@@ -4,7 +4,7 @@
 
 ---
 
-<!--BUILDING-->**Currently Building:** *pathcraft-release* — AI-powered learning roadmaps built with Flutter and Gemini
+<!--BUILDING-->**Currently Building:** *dialpath-release* — Dial Path APK releases for Android
 
 ---
 
